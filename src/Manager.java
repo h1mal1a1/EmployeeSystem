@@ -2,7 +2,7 @@ public class Manager extends Employee {
     private final int _teamSize;
 
     public Manager(String name, int salary, int teamSize) {
-        super(name, salary);
+        super(name, salary, EmployeeType.MANAGER);
         _teamSize = teamSize;
     }
 

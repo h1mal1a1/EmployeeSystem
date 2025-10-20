@@ -1,7 +1,7 @@
 public class Intern extends Employee {
     private final String _university;
     public Intern(String name, int salary, String university){
-        super(name, salary);
+        super(name, salary, EmployeeType.INTERN);
         _university = university;
     }
     public String getUniversity(){

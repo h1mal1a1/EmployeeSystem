@@ -2,7 +2,7 @@ public class Developer extends Employee {
     private final String _programmingLanguage;
 
     public Developer(String name, int salary, String programmingLanguage) {
-        super(name, salary);
+        super(name, salary, EmployeeType.DEVELOPER);
         _programmingLanguage = programmingLanguage;
     }
 
