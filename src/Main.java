@@ -1,14 +1,15 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void WorkWithCollections() {
-        List<Employee> employees = new ArrayList<>();
-        employees.add(new Developer("Антон", 1000, "Java"));
-        employees.add(new Manager("Гена", 2000, 4));
-        employees.add(new Intern("Ваня", 500, "НТГУ"));
-        employees.add(new Developer("Витя", 3000, "C#"));
-        employees.add(new Manager("Миша", 4000, 5));
-        employees.add(new Intern("Антон", 500, "МГУ"));
+        List<Employee> employees = new ArrayList<>(List.of(
+                new Developer("Антон", 1000, "Java"),
+                new Manager("Гена", 2000, 4),
+                new Intern("Ваня", 500, "НТГУ"),
+                new Developer("Витя", 3000, "C#"),
+                new Manager("Миша", 4000, 5),
+                new Intern("Антон", 500, "МГУ")));
 
         Set<String> uniqueNames = new HashSet<>();
         for (var empl : employees)
@@ -77,7 +78,33 @@ public class Main {
         al.displayAwardees();
 
     }
+    public static void WorkWithLambdaExpression(){
+        List<Employee> employees = List.of(
+                new Developer("Антон", 1000, "Java"),
+                new Manager("Гена", 2000, 4),
+                new Intern("Ваня", 500, "НТГУ"),
+                new Developer("Витя", 3000, "C#"),
+                new Manager("Миша", 4000, 5),
+                new Intern("Антон", 500, "МГУ"));
+        System.out.println(employees.stream().filter(e->e.getSalary() > 1500).count());
+        System.out.println(String.join(",",employees.stream().map(Employee::getName).toList()));
+
+        var lstManagers = employees
+                .stream()
+                .filter(f->f.getEmployeeType()==EmployeeType.MANAGER)
+                .sorted(Comparator.comparing(Employee::getSalary).reversed())
+                .limit(2);
+        lstManagers.forEach(Employee::displayInfo);
+        Map<Integer,Employee> mapIdAndEmpl = employees.stream().collect(Collectors.toMap(Employee::getEmployeeId,f->f));
+        mapIdAndEmpl.forEach((f,x)->System.out.println("Id: "+ f + ", name: " + x.getName()));
+
+        System.out.println("Интерн с ЗП меньше 600 " +
+                (employees
+                        .stream()
+                        .anyMatch(f->f.getEmployeeType()==EmployeeType.INTERN && f.getSalary() < 600) ?
+                "есть" : " не имеется"));
+    }
     public static void main(String[] args) {
-        WorkWithNestedClasses();
+        WorkWithLambdaExpression();
     }
 }
