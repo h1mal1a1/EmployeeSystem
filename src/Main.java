@@ -68,8 +68,16 @@ public class Main {
         }
         cont.getItem().displayInfo();
     }
+    public static void WorkWithNestedClasses(){
+        Manager mg = new Manager("Петя",10000,5);
+        Intern int1 = new Intern("Женя",500,"МГУ");
+        Intern int2 = new Intern("Женя",500,"МГУ");
+        var al = mg.createAwardList();
+        al.addEmployee(int2);
+        al.displayAwardees();
 
+    }
     public static void main(String[] args) {
-        WorkWithGeneric();
+        WorkWithNestedClasses();
     }
 }
