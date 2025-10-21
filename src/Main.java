@@ -59,11 +59,17 @@ public class Main {
             System.out.println("Ошибка при создании сотрудника: " + ex.getMessage());
         }
     }
+    public static void WorkWithGeneric(){
+        Container<Employee> cont = new Container<>();
+        cont.setItem(new Manager("Вася",1000,5));
+        if(cont.isEmpty()) {
+            System.out.println("Container is empty");
+            return;
+        }
+        cont.getItem().displayInfo();
+    }
 
     public static void main(String[] args) {
-
+        WorkWithGeneric();
     }
 }
-
-//Generic - позволяют создавать типобезопасные классы, интерфейсы и методы. Таким образом они решают проблемы:
-// проверки типов до этапа компиляции, необходимости приведения типов
