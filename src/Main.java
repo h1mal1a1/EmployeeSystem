@@ -104,7 +104,24 @@ public class Main {
                         .anyMatch(f->f.getEmployeeType()==EmployeeType.INTERN && f.getSalary() < 600) ?
                 "есть" : " не имеется"));
     }
+    public static void WorkWithFunctionalInterface() {
+        List<Employee> employees = new ArrayList<>(List.of(
+                new Developer("Антон", 1000, "Java"),
+                new Manager("Гена", 2000, 4),
+                new Intern("Ваня", 500, "НТГУ"),
+                new Developer("Витя", 3000, "C#"),
+                new Manager("Миша", 4000, 5),
+                new Intern("Антон", 500, "МГУ")));
+        EmployeeBonusCalculator calculator = employee -> switch (employee.getEmployeeType()) {
+            case MANAGER -> (employee.getSalary() * 0.25 + 5000);
+            case INTERN -> 5000;
+            case DEVELOPER -> employee.getSalary() * 0.2;
+            default -> throw new IllegalArgumentException("Unknow employee type: " + employee.getEmployeeType());
+        };
+        employees.forEach(e->System.out.println("Id сотрудника: " + e.getEmployeeId() +
+                ". Bonus: " + calculator.calculateBonus(e)));
+    }
     public static void main(String[] args) {
-        WorkWithLambdaExpression();
+        WorkWithFunctionalInterface();
     }
 }
