@@ -121,7 +121,18 @@ public class Main {
         employees.forEach(e->System.out.println("Id сотрудника: " + e.getEmployeeId() +
                 ". Bonus: " + calculator.calculateBonus(e)));
     }
+    public static void WorkWithFiles(){
+        List<Employee> employees = new ArrayList<>(List.of(
+                new Developer("Антон", 1000, "Java"),
+                new Manager("Гена", 2000, 4),
+                new Intern("Ваня", 500, "НТГУ"),
+                new Developer("Витя", 3000, "C#"),
+                new Manager("Миша", 4000, 5),
+                new Intern("Антон", 500, "МГУ")));
+        WorkWithFile wwf = new WorkWithFile();
+        wwf.saveEmployeeToFIle(employees);
+    }
     public static void main(String[] args) {
-        WorkWithFunctionalInterface();
+        WorkWithFiles();
     }
 }
