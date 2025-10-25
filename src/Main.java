@@ -133,9 +133,11 @@ public class Main {
         wwf.saveEmployeeToFile(employees);
         wwf.loadEmployeesFromFile();
     }
-
-    public static void main(String[] args) {
+    public static void WorkWithThreads(){
         WorkerTask wt = new WorkerTask();
         wt.WorkWithThreads();
+    }
+    public static void main(String[] args) {
+
     }
 }
