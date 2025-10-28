@@ -157,4 +157,17 @@ public class Examples {
         }
         System.out.println();
     }
+    public static void WorkWithAnnotation(Class<?> clazz){
+        if(clazz.isAnnotationPresent(EmployeeInfo.class)){
+            EmployeeInfo annotationOnClass = clazz.getAnnotation(EmployeeInfo.class);
+            System.out.println("Аннотация на классе: " + annotationOnClass.value());
+        }
+        var methodClass = clazz.getMethods();
+        for(var method: methodClass){
+            if(method.isAnnotationPresent(EmployeeInfo.class)){
+                EmployeeInfo annotationOnMethod = method.getAnnotation(EmployeeInfo.class);
+                System.out.println("Аннотация на методе: " + method.getName() + ". Имя: " + annotationOnMethod.value());
+            }
+        }
+    }
 }

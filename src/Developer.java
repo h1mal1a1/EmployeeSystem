@@ -1,4 +1,4 @@
-public class Developer extends Employee {
+@EmployeeInfo("Senior Developer") public class Developer extends Employee {
     private final String _programmingLanguage;
 
     public Developer(String name, int salary, String programmingLanguage) {
@@ -21,7 +21,7 @@ public class Developer extends Employee {
     }
 
     @Override
-    public void displayInfo() {
+    @EmployeeInfo("Основной метод получения информации") public void displayInfo() {
         System.out.println("Developer:");
         super.displayInfo();
         System.out.println("Язык: " + getProgrammingLanguage() + "\r\nБонус: " + calculateBonus());
